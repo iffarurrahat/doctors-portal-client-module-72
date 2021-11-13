@@ -14,12 +14,12 @@ import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
-  const { user, loginUser, isLoading, authError } = useAuth();
+  const { user, loginUser, signInWithGoogle, isLoading, authError } = useAuth();
 
   const location = useLocation();
   const history = useHistory();
 
-  const handleOnChange = e => {
+  const handleOnBlur = e => {
     const field = e.target.name;
     const value = e.target.value;
     const newLoginData = { ...loginData };
@@ -30,6 +30,10 @@ const Login = () => {
   const handleLoginSubmit = e => {
     loginUser(loginData.email, loginData.password, location, history);
     e.preventDefault();
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(location, history);
   };
 
   return (
@@ -46,7 +50,7 @@ const Login = () => {
               label="Your Email"
               name="email"
               type="email"
-              onChange={handleOnChange}
+              onBlur={handleOnBlur}
               variant="standard"
             />
             <TextField
@@ -54,7 +58,7 @@ const Login = () => {
               id="standard-basic"
               label="Your Password"
               name="password"
-              onChange={handleOnChange}
+              onBlur={handleOnBlur}
               type="password"
               variant="standard"
             />
@@ -74,6 +78,10 @@ const Login = () => {
             )}
             {authError && <Alert severity="error">{authError}</Alert>}
           </form>
+          <p>-------------------------------</p>
+          <Button variant="contained" onClick={handleGoogleSignIn}>
+            Google Sign In
+          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
           <img style={{ width: '100%' }} src={login} alt="" />

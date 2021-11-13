@@ -72,3 +72,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 "# doctors-portal-client-module-70" 
 "# doctors-portal-client-module-70" 
 "# doctors-portal-client-module-71" 
+"# doctors-portal-client-module-72" 
